@@ -136,7 +136,7 @@ local function checkPlayerMovement()
 
         if notMovingTimer >= hopWhenTheGameIsStuck then
             print("Player has not moved for "..hopWhenTheGameIsStuck.." seconds, initiating server hop")
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/misc/h.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/serverhop.lua"))()
             --break
         end
     end
@@ -298,7 +298,7 @@ function autoPopBalloon()
         if allPopped then
             if config.Balloon.hopWhenNoBalloon then
                 task.wait(config.Balloon.delayHopWhenNoBalloon)
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/misc/h.lua"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/serverhop.lua"))()
             end
             task.wait(1)
         end
