@@ -157,6 +157,7 @@ end
 function checkGems()
     local Network = game.ReplicatedStorage.Network
     local Items = {"Gift Bag"}
+    local gem = 20000
     function autoOpen(name)
         Network.GiftBag_Open:InvokeServer(name)
     end
@@ -166,8 +167,8 @@ function checkGems()
 
     for i, v in pairs(GetSave().Inventory.Currency) do
         if v.id == "Diamonds" then
-            if type(v._am) == "number" and type(getgenv().config.gemsCheckFirst) == "number" then
-                if v._am <= getgenv().config.gemsCheckFirst then
+            if type(v._am) == "number" and type(gem) == "number" then
+                if v._am <= gem then
                     while wait() do
                         for i,gift in pairs(Items) do
                             autoOpen(gift)
