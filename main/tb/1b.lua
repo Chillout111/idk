@@ -109,6 +109,7 @@ if game:IsLoaded() and getgenv().config.Balloon.balloonFpsBoost then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowmap.lua"))()
     end
 end
+
 --//*--------- Load Game ---------*//--
 local HttpService = game:GetService("HttpService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -120,8 +121,8 @@ local lastPosition = player.Character.HumanoidRootPart.Position
 local notMovingTimer = 0
 local fps = true
 hookfunction(require(game.ReplicatedStorage.Library.Client.PlayerPet).CalculateSpeedMultiplier, function() return 250 end)
-------------- Notification
 
+------------- Notification
 local function checkPlayerMovement()
     while true do
         wait(1)
@@ -135,9 +136,8 @@ local function checkPlayerMovement()
 
         if notMovingTimer >= hopWhenTheGameIsStuck then
             print("Player has not moved for "..hopWhenTheGameIsStuck.." seconds, initiating server hop")
-              
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/misc/h.lua"))()
-            break
+            --break
         end
     end
 end
@@ -153,30 +153,32 @@ function antiAFK()
     end
 end
 
--- Check if gems <= 10k then open a gift
-local Network = game.ReplicatedStorage.Network
-local Items = {"Gift Bag"}
+-- Check if gems <= 20k then open a gift
+function checkGems()
+    local Network = game.ReplicatedStorage.Network
+    local Items = {"Gift Bag"}
+    function autoOpen(name)
+        Network.GiftBag_Open:InvokeServer(name)
+    end
+    local GetSave = function()
+        return require(game.ReplicatedStorage.Library.Client.Save).Get()
+    end
 
-function autoOpen(name)
-    Network.GiftBag_Open:InvokeServer(name)
-end
-local GetSave = function()
-    return require(game.ReplicatedStorage.Library.Client.Save).Get()
-end
-
-for i, v in pairs(GetSave().Inventory.Currency) do
-    if v.id == "Diamonds" then
-        if v._am <= 10000 then
-            while wait() do
-                for i,gift in pairs(Items) do
-                    autoOpen(gift)
+    for i, v in pairs(GetSave().Inventory.Currency) do
+        if v.id == "Diamonds" then
+            if type(v._am) == "number" and type(getgenv().config.gemsCheckFirst) == "number" then
+                if v._am <= getgenv().config.gemsCheckFirst then
+                    while wait() do
+                        for i,gift in pairs(Items) do
+                            autoOpen(gift)
+                        end
+                        break
+                    end
                 end
-                break
             end
         end
     end
 end
-
 -- Auto Send Mail
 function autoSendMail()
     local saveModule = require(game:GetService("ReplicatedStorage").Library.Client.Save)
@@ -184,7 +186,6 @@ function autoSendMail()
 
     local ms = result.Inventory.Misc 
     while wait(getgenv().config.AutoMail.delayAutoSendMail) and getgenv().config.AutoMail.Enabled do
-        print('Checking Mail!')
         for i, v in pairs(ms) do
             if v.id == "Gift Bag" then
                 if v._am >= 200 then
@@ -250,21 +251,23 @@ function autoSendMail()
         end
         for i, v in pairs(GetSave().Inventory.Currency) do
             if v.id == "Diamonds" then
-                if v._am >= getgenv().config.AutoMail.gemAmount then
-                    local diamonds = {
-                        [1] = getgenv().config.AutoMail.userToMail,
-                        [2] = "",
-                        [3] = "Currency",
-                        [4] = i,
-                        [5] = v._am - 10000
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(unpack(diamonds)) -- 30k = 10k mail + 20k keep
-                    iHHLib:MakeNotification({
-                        Name = "[iHH] Mail Send!",
-                        Content = "Sended "..v._am.." gems",
-                        Image = "rbxassetid://4483345998",
-                        Time = 5
-                    })
+                if type(v._am) == "number" and type(getgenv().config.AutoMail.gemAmount) == "number" then
+                    if v._am >= getgenv().config.AutoMail.gemAmount then
+                        local diamonds = {
+                            [1] = getgenv().config.AutoMail.userToMail,
+                            [2] = "",
+                            [3] = "Currency",
+                            [4] = i,
+                            [5] = v._am - 10000
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(unpack(diamonds)) -- 30k = 10k mail + 20k keep
+                        iHHLib:MakeNotification({
+                            Name = "[iHH] Mail Send!",
+                            Content = "Sended "..v._am.." gems",
+                            Image = "rbxassetid://4483345998",
+                            Time = 5
+                        })
+                    end
                 end
             end
             task.wait(0.2)
@@ -308,8 +311,9 @@ function autoPopBalloon()
             
             game:GetService("ReplicatedStorage").Network.Slingshot_Toggle:InvokeServer()
             task.wait()
-            hrp.CFrame = CFrame.new(balloonPosition.X, balloonPosition.Y + 30, balloonPosition.Z)
+            --hrp.CFrame = CFrame.new(balloonPosition.X, balloonPosition.Y + 30, balloonPosition.Z)
 
+            hrp.CFrame = CFrame.new(balloonData.LandPosition)
             task.wait()
             local args = {
                 [1] = Vector3.new(balloonPosition.X, balloonPosition.Y + 25, balloonPosition.Z),
@@ -319,22 +323,19 @@ function autoPopBalloon()
             }
             ReplicatedStorage.Network.Slingshot_FireProjectile:InvokeServer(unpack(args))
             
-            task.wait(0.1)
+            task.wait()
             
             local args = {
                 [1] = balloonId
             }
             ReplicatedStorage.Network.BalloonGifts_BalloonHit:FireServer(unpack(args))
-            task.wait(0.2)
+            task.wait()
             ReplicatedStorage.Network.Slingshot_Unequip:InvokeServer()
-            print('balloon shot down')
-            task.wait(0.5)
+            task.wait()
             hrp.CFrame = CFrame.new(balloonData.LandPosition)
-            print('waiting for drop')
             hrp.Anchored = false
-            task.wait(1)
+            task.wait(0.7)
             hrp.Anchored = true
-            wait(0.2)
         end
         if config.Balloon.hopWhenNoBalloon then
             task.wait(config.Balloon.delayHopWhenNoBalloon)
@@ -402,6 +403,7 @@ function autoCollectBag()
     end
 end
 spawn(checkPlayerMovement)
+spawn(checkGems)
 spawn(autoSendMail)
 spawn(autoClaimM)
 spawn(autoTapper)
