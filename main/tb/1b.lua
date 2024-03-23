@@ -336,6 +336,7 @@ function autoPopBalloon()
             hrp.Anchored = false
             task.wait(0.7)
             hrp.Anchored = true
+            wait(0.1)
         end
         if config.Balloon.hopWhenNoBalloon then
             task.wait(config.Balloon.delayHopWhenNoBalloon)
