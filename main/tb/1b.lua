@@ -136,11 +136,12 @@ local function checkPlayerMovement()
         if notMovingTimer >= hopWhenTheGameIsStuck then
             print("Player has not moved for "..hopWhenTheGameIsStuck.." seconds, initiating server hop")
               
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/lowserverhop.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/misc/h.lua"))()
             break
         end
     end
 end
+
 -- Anti AFk
 function antiAFK()
     local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -152,11 +153,6 @@ function antiAFK()
     end
 end
 
-function getServer()
-	local servers = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. tostring(game.PlaceId) .. '/servers/Public?sortOrder=Asc&limit=100')).data
-	local server = servers[Random.new():NextInteger(80, 100)]
-	if server then return server else return getServer() end
-end
 -- Check if gems <= 10k then open a gift
 local Network = game.ReplicatedStorage.Network
 local Items = {"Gift Bag"}
@@ -298,7 +294,7 @@ function autoPopBalloon()
         if allPopped then
             if config.Balloon.hopWhenNoBalloon then
                 task.wait(config.Balloon.delayHopWhenNoBalloon)
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/serverhop.lua"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/misc/h.lua"))()
             end
             task.wait(1)
         end
@@ -342,7 +338,7 @@ function autoPopBalloon()
         end
         if config.Balloon.hopWhenNoBalloon then
             task.wait(config.Balloon.delayHopWhenNoBalloon)
-            repeat game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, getServer().id, player) task.wait(3) until not game.PlaceId
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/misc/h.lua"))()
         end
     end
 end
