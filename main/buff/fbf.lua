@@ -33,7 +33,7 @@ pcall(function()
     end
 end)
 for _, v in pairs(THINGS:GetChildren()) do
-    if v:IsA('Model') and v.Name ~= "HiddenPresents" and v.Name ~= "Pets" and v.Name ~= "Eggs" then
+    if v:IsA('Model') and v.Name ~= "HiddenPresents" and v.Name ~= "Pets" and v.Name ~= "Eggs" and v.Name ~= "CustomEggs" then
         v:Destroy()
     end
 end
