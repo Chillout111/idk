@@ -21,23 +21,23 @@ while true do
     for i, v in next, Servers.data do
         if v.playing < v.maxPlayers and v.id ~= _id then
             if v.playing >= v.maxPlayers then
-                print("Skipped server:", v.id, "as it is now full.")
+                print("[iHH] Skipped server:", v.id, "as it is now full.")
                 continue
             end
 
             for attempt = 1, retryAttempts do
                 if waitTime > 0 then
-                    print("Waiting for", waitTime, "seconds before attempting to teleport to the next server...")
+                    print("[iHH] Waiting for", waitTime, "seconds before attempting to teleport to the next server...")
                     wait(waitTime)
                 end
 
                 local success, errorInfo = pcall(TPS.TeleportToPlaceInstance, TPS, _place, v.id, Player)
 
                 if success then
-                    print("Successfully teleported to server:", v.id)
+                    print("[iHH] Successfully teleported to server:", v.id)
                     return
                 else
-                    print("Failed to teleport to server:", v.id, "Error:", errorInfo)
+                    print("[iHH] Failed to teleport to server:", v.id, "Error:", errorInfo)
                     wait(1)
                 end
             end
@@ -46,5 +46,6 @@ while true do
 
     Next = Servers.nextPageCursor
     
-    print("No available servers to teleport.")
+    print("[iHH] No available servers to teleport.")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/serverhop.lua"))()
 end
