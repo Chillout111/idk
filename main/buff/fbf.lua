@@ -59,7 +59,7 @@ for _, v in pairs(playerGui._MISC:GetChildren()) do
 end
 
 for _, v in pairs(playerGui._INSTANCES.FishingGame:GetDescendants()) do
-    if v:IsA("MeshPart") and v.Name == "UIStoke" then
+    if v:IsA("MeshPart") and v.Name == "UIStroke" then
         v:Destroy()
     end
 end
