@@ -21,7 +21,7 @@ pcall(function()
     end
 end)
 for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChildren()) do
-    if table.find({"ShinyRelics", "Ornaments", "Instances", "Ski Chairs", "BalloonGifts", "Sounds"}, v.Name) then
+    if table.find({"ShinyRelics", "Ornaments", "Ski Chairs", "BalloonGifts", "Sounds"}, v.Name) then
         v:Destroy()
     end
 end
