@@ -13,6 +13,9 @@ pcall(function()
         if string.find(v.Name, "Model") or string.find(v.Name, "Water") or string.find(v.Name, "Debris") then --or string.find(v.Name, "Interactable") then
             v:Destroy()
         end
+        for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing.Interactable.Merchant:GetChildren()) do
+            v:Destroy()
+        end
         if v.Name == "Map" then
             for _, v in pairs(v:GetChildren()) do
                 if v.Name ~= "Union" then
@@ -27,12 +30,32 @@ for _, v in pairs(THINGS:GetChildren()) do
         v:Destroy()
     end
 end
+for _, v in pairs(playerGui.MainLeft:GetChildren()) do
+    v:Destroy()
+end
+for _, v in pairs(playerGui.Main.Boosts:GetChildren()) do
+    v:Destroy()
+end
+for _, v in pairs(playerGui.Main.UltimateButtons:GetChildren()) do
+    v:Destroy()
+end
+for _, v in pairs(playerGui.Main.BottomRight:GetChildren()) do
+    v:Destroy()
+end
+for _, v in pairs(playerGui.GoalsSide:GetChildren()) do
+    v:Destroy()
+end
 for _, v in pairs(playerGui._MISC:GetChildren()) do
     if v.Name == "Instancing" then
         v:Destroy()
     end
 end
 
+for _, v in pairs(playerGui._INSTANCES.FishingGame:GetDescendants()) do
+    if v:IsA("MeshPart") and v.Name == "UIStoke" then
+        v:Destroy()
+    end
+end
 for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing:GetChildren()) do
     if v.Name == "Water" then
         v:Destroy()
