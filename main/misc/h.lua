@@ -1,4 +1,4 @@
-kolocal Player = game.Players.LocalPlayer    
+local Player = game.Players.LocalPlayer    
 local Http = game:GetService("HttpService")
 local TPS = game:GetService("TeleportService")
 local Api = "https://games.roblox.com/v1/games/"
