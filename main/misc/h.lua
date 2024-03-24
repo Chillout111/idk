@@ -1,4 +1,4 @@
-local Player = game.Players.LocalPlayer    
+kolocal Player = game.Players.LocalPlayer    
 local Http = game:GetService("HttpService")
 local TPS = game:GetService("TeleportService")
 local Api = "https://games.roblox.com/v1/games/"
@@ -47,5 +47,5 @@ while true do
     Next = Servers.nextPageCursor
     
     print("[iHH] No available servers to teleport.")
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/serverhop.lua"))()
+    --loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/serverhop.lua"))()
 end
