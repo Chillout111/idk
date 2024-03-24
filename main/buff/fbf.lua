@@ -8,6 +8,11 @@ pcall(function()
         if string.find(v.Name, "Model") or string.find(v.Name, "Water") or string.find(v.Name, "Debris") then --or string.find(v.Name, "Interactable") then
             v:Destroy()
         end
+        for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChildren()) do
+            if table.find({"ShinyRelics", "Ornaments", "Ski Chairs", "BalloonGifts", "Sounds"}, v.Name) then
+                v:Destroy()
+            end
+        end
         for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing.Interactable.Merchant:GetChildren()) do
             v:Destroy()
         end
