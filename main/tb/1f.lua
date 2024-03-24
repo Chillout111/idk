@@ -385,7 +385,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Gift Bag" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 15 then
+                if v._am >= 500 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
@@ -396,7 +396,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Large Gift Bag" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 5 then
+                if v._am >= 250 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
