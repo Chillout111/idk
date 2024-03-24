@@ -31,7 +31,7 @@ for _, v in pairs(THINGS:GetChildren()) do
     end
 end
 for _, v in pairs(playerGui.MainLeft:GetChildren()) do
-    v:Destroy()
+    v.Enabled = false
 end
 for _, v in pairs(playerGui.Main.Boosts:GetChildren()) do
     v:Destroy()
