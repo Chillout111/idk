@@ -30,8 +30,10 @@ for _, v in pairs(THINGS:GetChildren()) do
         v:Destroy()
     end
 end
-for _, v in pairs(playerGui.MainLeft:GetChildren()) do
-    v.Enabled = false
+for _, v in pairs(playerGui:GetChildren()) do
+    if v.Name == "MainLeft" then
+        v.Enabled = false
+    end
 end
 for _, v in pairs(playerGui.Main.Boosts:GetChildren()) do
     v:Destroy()
