@@ -4,11 +4,6 @@ pcall(function()
     for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing.Map:GetChildren()) do 
         v:Destroy()
     end
-    for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChildren()) do
-        if table.find({"ShinyRelics", "Ornaments", "Instances", "Ski Chairs", "BalloonGifts", "Sounds"}, v.Name) then
-            v:Destroy()
-        end
-    end
     for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS").__INSTANCE_CONTAINER.Active.AdvancedFishing:GetChildren()) do
         if string.find(v.Name, "Model") or string.find(v.Name, "Water") or string.find(v.Name, "Debris") then --or string.find(v.Name, "Interactable") then
             v:Destroy()
@@ -25,6 +20,11 @@ pcall(function()
         end
     end
 end)
+for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChildren()) do
+    if table.find({"ShinyRelics", "Ornaments", "Instances", "Ski Chairs", "BalloonGifts", "Sounds"}, v.Name) then
+        v:Destroy()
+    end
+end
 for _, v in pairs(THINGS:GetChildren()) do
     if v:IsA('Model') and v.Name ~= "HiddenPresents" and v.Name ~= "Pets" and v.Name ~= "Eggs" and v.Name ~= "CustomEggs" then
         v:Destroy()
