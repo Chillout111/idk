@@ -136,7 +136,33 @@ Mics:AddButton(
         end
     })
 iHHLib:Init()
+-- Check if gems <= 20k then open a gift
+function checkGems()
+    local Network = game.ReplicatedStorage.Network
+    local Items = {"Gift Bag"}
+    local gem = 20000
+    function autoOpen(name)
+        Network.GiftBag_Open:InvokeServer(name)
+    end
+    local GetSave = function()
+        return require(game.ReplicatedStorage.Library.Client.Save).Get()
+    end
 
+    for i, v in pairs(GetSave().Inventory.Currency) do
+        if v.id == "Diamonds" then
+            if type(v._am) == "number" and type(gem) == "number" then
+                if v._am <= gem then
+                    while wait() do
+                        for i,gift in pairs(Items) do
+                            autoOpen(gift)
+                        end
+                        break
+                    end
+                end
+            end
+        end
+    end
+end
 -- Low CPU
 function lowCPU()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowCPU.lua"))()
@@ -145,8 +171,6 @@ function ultrafpsboost()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/buff/fbf.lua"))()
 end
 -- Auto Buy Rod
-
-
 function getActive() return workspace.__THINGS.__INSTANCE_CONTAINER.Active:GetChildren()[1] end
 
 function checkForRod(rodName)
@@ -479,5 +503,6 @@ function atoggle()
     claimMail:Set(config.AutoMail.autoClaimMail)
 end
 spawn(atoggle)
+spawn(checkGems)
 spawn(AutoBuyRod)
 spawn(antiAFK)
