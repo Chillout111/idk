@@ -4,23 +4,13 @@ pcall(function()
     for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing.Map:GetChildren()) do 
         v:Destroy()
     end
-    --[[local targetCFrame1 = CFrame.new(1450.4469, 62.8209801, -4451.35938, 0.0706113577, -0, -0.997503936, 0, 1, -0, 0.997503936, 0, 0.0706113577)
-    local targetCFrame2 = CFrame.new(1450.18347, 62.8210258, -4455.08691, 0.0706113577, -0, -0.997503936, 0, 1, -0, 0.997503936, 0, 0.0706113577)
-    local targetCFrame3 = CFrame.new(1451.85693, 62.820713, -4438.60547, 0.157342553, -0, -0.98754406, 0, 1, -0, 0.98754406, 0, 0.157342553)
-    local targetCFrame4 = CFrame.new(1450.81909, 62.8208656, -4446.11084, 0.0706113577, -0, -0.997503936, 0, 1, -0, 0.997503936, 0, 0.0706113577)
-    local targetCFrame5 = CFrame.new(1450.16333, 62.8211632, -4463.27051, -0.0165338516, 0, -0.999863327, 0, 1, 0, 0.999863327, 0, -0.0165338516)
-    for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing.Model:GetDescendants()) do
-        if v:IsA('Part') and v.CFrame ~= targetCFrame1 and v.CFrame ~= targetCFrame2 and v.CFrame ~= targetCFrame3 and v.CFrame ~= targetCFrame4 and v.CFrame ~= targetCFrame5 then
-            v:Destroy()
-        end
-    end]]
     for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChildren()) do
         if table.find({"ShinyRelics", "Ornaments", "Instances", "Ski Chairs", "BalloonGifts", "Sounds"}, v.Name) then
             v:Destroy()
         end
     end
     for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS").__INSTANCE_CONTAINER.Active.AdvancedFishing:GetChildren()) do
-        if string.find(v.Name, "Model") or string.find(v.Name, "Water") or string.find(v.Name, "Debris") or string.find(v.Name, "Interactable") then
+        if string.find(v.Name, "Model") or string.find(v.Name, "Water") or string.find(v.Name, "Debris") then --or string.find(v.Name, "Interactable") then
             v:Destroy()
         end
         if v.Name == "Map" then
