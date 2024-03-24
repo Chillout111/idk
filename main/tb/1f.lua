@@ -82,7 +82,7 @@ local sendMail = Mail:AddToggle(
         Default = config.AutoMail.Enabled,
         Save = true,
         Flag = "Auto Send Mail",
-        Callback = function()
+        Callback = function(v)
             getgenv().config.AutoMail.Enabled = v
             spawn(autoSendMail)
         end
