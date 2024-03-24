@@ -431,7 +431,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Mini Lucky Block" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 5 then
+                if v._am >= 15 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
@@ -442,7 +442,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Mini Pinata" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 5 then
+                if v._am >= 10 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
