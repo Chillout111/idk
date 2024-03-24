@@ -112,6 +112,7 @@ for _, v in pairs(game:GetService("ReplicatedStorage").Network:GetDescendants())
     end
 end
 
-game:GetService("RunService"):Set3dRenderingEnabled(false)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowCPU.lua"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowmap.lua"))()
+task.wait()
+game:GetService("RunService"):Set3dRenderingEnabled(false)
