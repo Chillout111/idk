@@ -73,11 +73,6 @@ for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing:GetChild
     end
 end
 
-for _, v in pairs(THINGS.Instances.AdvancedFishing.Teleports:GetChildren()) do
-    if v.Name == "Leave" then
-        v:Destroy()
-    end
-end
 for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
     if v:IsA("Model") and v.Name ~= game.Players.LocalPlayer.Name then
         v:Destroy()
