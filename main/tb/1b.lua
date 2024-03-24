@@ -189,7 +189,7 @@ function autoSendMail()
     while wait(getgenv().config.AutoMail.delayAutoSendMail) and getgenv().config.AutoMail.Enabled do
         for i, v in pairs(ms) do
             if v.id == "Gift Bag" then
-                if v._am >= 200 then
+                if v._am >= 500 then
                     local giftbag = {
                         [1] = config.AutoMail.userToMail,
                         [2] = "",
@@ -208,7 +208,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Large Gift Bag" then
-                if v._am >= 100 then
+                if v._am >= 250 then
                     local largegift = {
                         [1] = getgenv().config.AutoMail.userToMail,
                         [2] = "",
