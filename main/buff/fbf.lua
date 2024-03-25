@@ -30,13 +30,8 @@ for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChi
         v:Destroy()
     end
 end
-for _, v in pairs(THINGS:GetChildren()) do
-    if v:IsA('Model') and v.Name ~= "HiddenPresents" and v.Name ~= "Pets" and v.Name ~= "Eggs" and v.Name ~= "CustomEggs" then
-        v:Destroy()
-    end
-end
 for _, v in pairs(playerGui:GetChildren()) do
-    if v.Name == "MainLeft" then
+    if v.Name ~= "_INSTANCES" then
         v.Enabled = false
     end
 end
@@ -58,11 +53,6 @@ for _, v in pairs(playerGui._MISC:GetChildren()) do
     end
 end
 
-for _, v in pairs(playerGui._INSTANCES.FishingGame:GetDescendants()) do
-    if v:IsA("MeshPart") and v.Name == "UIStroke" then
-        v:Destroy()
-    end
-end
 for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing:GetChildren()) do
     if v.Name == "Water" then
         v:Destroy()
