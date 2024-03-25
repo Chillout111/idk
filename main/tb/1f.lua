@@ -4,6 +4,8 @@ until game:IsLoaded()
 
 if not game.PlaceId == 8737899170 then game.ReplicatedStorage.Network.World1Teleport:InvokeServer() end
 
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/antistaff.lua'))()
+
 local player = game.Players.LocalPlayer
 local RepStor = game:GetService("ReplicatedStorage")
 local Network = RepStor:WaitForChild("Network")
