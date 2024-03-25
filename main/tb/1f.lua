@@ -10,6 +10,7 @@ local Network = RepStor:WaitForChild("Network")
 local saveModule = require(RepStor.Library.Client.Save).Get()
 local Library = require(game.ReplicatedStorage:WaitForChild('Library'))
 local Level = require(game.ReplicatedStorage.Library.Client.MasteryCmds)
+local fish = require(game.ReplicatedStorage.Library.Directory.Mastery)
 local iHHLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Lib/TrungBLib.lua')))()
 local Window = iHHLib:MakeWindow({Name = "[iHH] 🐾 Fish 🐾", HidePremium = false, IntroEnabled = false, Saveconfig = true, configFolder = "iHHCheat"})
 
@@ -285,7 +286,7 @@ function moveToFishingDerec()
 end
 
 function autoFishAdvanced()
-    local FishingRank = Level:GetLevel()
+    local FishingRank = Level.GetLevel(fish.Fishing)
 
     while getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" do
         
