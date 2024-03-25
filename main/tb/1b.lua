@@ -1,4 +1,7 @@
 repeat task.wait(1) until game:IsLoaded()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/antistaff.lua'))()
+
 --//*--------- FPS Boost ---------*//--
 if game:IsLoaded() and getgenv().config.Balloon.balloonFpsBoost then
     local THINGS = game:GetService("Workspace")["__THINGS"]
