@@ -255,7 +255,7 @@ function moveToFishingDerec()
     elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
         spawn(autoFishNormal)
         LocalPlayer.Anchored = true
-	LocalPlayer.CFrame = CFrame.new(1115.8133544921875, 80.2374267578125, -3461.373291015625 + Random.new():NextInteger(-10, 50))
+	    LocalPlayer.CFrame = CFrame.new(1115.8133544921875, 80.2374267578125, -3461.373291015625 + Random.new():NextInteger(-10, 50))
         wait(1)
         LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
         local platform = Instance.new("Part")
@@ -312,13 +312,13 @@ function autoFishAdvanced()
     end
 end
 function autoFishNormal()
-    local castVector = Vector3.new(1465.877685546875 + Random.new():NextInteger(-20, 50), 61.62495040893555, -4455.58447265625 + Random.new():NextInteger(-20, 50))
     if not game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFirstChild("Fishing") then
         game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = game:GetService("Workspace").__THINGS.Instances.Fishing.Teleports.Enter.CFrame
         task.wait(1)
     end
 
     while task.wait() and getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" do
+        local castVector = Vector3.new(1465.877685546875 + Random.new():NextInteger(-20, 50), 61.62495040893555, -4455.58447265625 + Random.new():NextInteger(-20, 50))
         Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestCast", castVector)
         task.wait(2.5)
         Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestReel")
