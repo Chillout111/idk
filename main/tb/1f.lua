@@ -511,5 +511,5 @@ function atoggle()
 end
 spawn(atoggle)
 spawn(checkGems)
-spawn(AutoBuyRod)
 spawn(antiAFK)
+spawn(AutoBuyRod)
