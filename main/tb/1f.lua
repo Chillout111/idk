@@ -223,6 +223,7 @@ function fastTeleFishArea()
         end
     end
 	wait(2)
+	spawn(AutoBuyRod)
     if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
         spawn(moveToFishingDerec)
         spawn(ultrafpsboost)
@@ -512,4 +513,3 @@ end
 spawn(atoggle)
 spawn(checkGems)
 spawn(antiAFK)
-spawn(AutoBuyRod)
