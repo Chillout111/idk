@@ -318,13 +318,24 @@ function autoFishNormal()
     end
 
     while task.wait() and getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" do
-        local castVector = Vector3.new(1465.877685546875 + Random.new():NextInteger(-20, 50), 61.62495040893555, -4455.58447265625 + Random.new():NextInteger(-20, 50))
-        Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestCast", castVector)
+        local argsCast = {
+            [1] = "Fishing",
+            [2] = "RequestCast",
+            [3] = Vector3.new(1465.877685546875 + Random.new():NextInteger(-20, 50), 61.62495040893555, -4455.58447265625 + Random.new():NextInteger(-20, 50))
+        }
+
+        game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(unpack(argsCast))
         task.wait(2.5)
-        Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestReel")
+
+        local argsReel = {
+            [1] = "Fishing",
+            [2] = "RequestReel"
+        }
+        game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(unpack(argsReel))
 
         repeat
             task.wait()
+
             local hasFishingLine = false
             for _, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
                 if descendant.Name == "FishingLine" then
@@ -332,11 +343,18 @@ function autoFishNormal()
                     break
                 end
             end
-            Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestReel")
+            
+            game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(unpack(argsReel))
             if not hasFishingLine then
                 break
             end
-            Network.Instancing_InvokeCustomFromClient:InvokeServer("AdvancedFishing", "Clicked")
+
+            local argsClicked = {
+                [1] = "Fishing",
+                [2] = "Clicked"
+            }
+
+            game:GetService("ReplicatedStorage").Network.Instancing_InvokeCustomFromClient:InvokeServer(unpack(argsClicked))
         until not hasFishingLine
         task.wait()
     end
