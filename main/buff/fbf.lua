@@ -165,17 +165,6 @@ elseif game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFir
                 instan.Enabled = false
             end
         end
-        for _, info in pairs(playerGui._INSTANCES.FishingGame.Info:GetChildren()) do
-            if info.Name == "Top" then
-                info.UIStroke:Destroy()
-            end
-            if info.Name == "Middle" then
-                info.UIStroke:Destroy()
-            end
-            if info.Name == "Bottom" then
-                info.UIStroke:Destroy()
-            end
-        end
     end
     for _, v in pairs(game:GetService("Workspace"):GetChildren()) do
         if v:IsA("Model") and v.Name ~= game.Players.LocalPlayer.Name then
