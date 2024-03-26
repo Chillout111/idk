@@ -5,7 +5,7 @@ pcall(function()
         v:Destroy()
     end
     for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS").__INSTANCE_CONTAINER.Active.AdvancedFishing:GetChildren()) do
-        if string.find(v.Name, "Model") or string.find(v.Name, "Water") or string.find(v.Name, "Debris") then --or string.find(v.Name, "Interactable") then
+        if string.find(v.Name, "Model") or string.find(v.Name, "Water") or string.find(v.Name, "Debris") then
             v:Destroy()
         end
         for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChildren()) do
@@ -30,9 +30,26 @@ for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChi
         v:Destroy()
     end
 end
+local playerGui = game:GetService("Players").LocalPlayer.PlayerGui
 for _, v in pairs(playerGui:GetChildren()) do
     if v.Name ~= "_INSTANCES" then
         v.Enabled = false
+    end
+    for _, instan in pairs(v:GetDescendants()) do
+        if instan.Name == "Instancing" then
+            instan.Enabled = false
+        end
+    end
+    for _, info in pairs(playerGui._INSTANCES.FishingGame.Info:GetChildren()) do
+        if info.Name == "Top" then
+            info.UIStroke:Destroy()
+        end
+        if info.Name == "Middle" then
+            info.UIStroke:Destroy()
+        end
+        if info.Name == "Bottom" then
+            info.UIStroke:Destroy()
+        end
     end
 end
 
