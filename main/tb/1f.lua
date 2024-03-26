@@ -264,26 +264,30 @@ function autoClaimMail()
 end
 -- Auto Fishing
 function moveToFishingDerec()
-    if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
-        spawn(autoFishAdvanced)
-        local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-        LocalPlayer.Anchored = true
-	LocalPlayer.CFrame = CFrame.new(1451.040771484375, 66.06719207763672, -4451.8642578125)
-        wait(2)
-        LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
-
-        local platform = Instance.new("Part")
-        platform.Parent = game:GetService("Workspace")
-        platform.Anchored = true
-        platform.CFrame = LocalPlayer.CFrame + Vector3.new(0, -5, 0)
-        platform.Size = Vector3.new(5, 1, 5)
-        platform.Transparency = 1
-
-        LocalPlayer.Anchored = false
-    elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
-        LocalPlayer.CFrame = CFrame.new(1115.8133544921875, 80.2374267578125, -3461.373291015625 + Random.new():NextInteger(-10, 50))
-        wait(3)
-        spawn(autoFishNormal)
+    if getgenv().config.Fishing.Enabled 
+	if getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
+	        spawn(autoFishAdvanced)
+	        local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+	        LocalPlayer.Anchored = true
+		LocalPlayer.CFrame = CFrame.new(1451.040771484375, 66.06719207763672, -4451.8642578125)
+	        wait(2)
+	        LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
+	
+	        local platform = Instance.new("Part")
+	        platform.Parent = game:GetService("Workspace")
+	        platform.Anchored = true
+	        platform.CFrame = LocalPlayer.CFrame + Vector3.new(0, -5, 0)
+	        platform.Size = Vector3.new(5, 1, 5)
+	        platform.Transparency = 1
+	
+	        LocalPlayer.Anchored = false
+    	elseif getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
+	        LocalPlayer.Anchored = true
+	        LocalPlayer.CFrame = CFrame.new(1115.8133544921875, 80.2374267578125, -3461.373291015625 + Random.new():NextInteger(-10, 50))
+	        wait(1)
+	        LocalPlayer.Anchored = false
+	        spawn(autoFishNormal)
+	end
     end
 end
 
