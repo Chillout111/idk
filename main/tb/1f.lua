@@ -142,9 +142,6 @@ Mics:AddButton(
 iHHLib:Init()
 
 -- Low CPU
-function lowCPU()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowCPU.lua"))()
-end
 function ultrafpsboost()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/buff/fbf.lua"))()
 end
@@ -200,10 +197,10 @@ function fastTeleFishArea()
 	wait(2)
     if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
         spawn(moveToFishingDerec)
-        --spawn(ultrafpsboost)
+        spawn(ultrafpsboost)
     elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
         spawn(moveToFishingDerec)
-        spawn(lowCPU)
+        spawn(ultrafpsboost)
     end
 end
 -- Auto Present
@@ -258,7 +255,7 @@ function moveToFishingDerec()
     elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
         spawn(autoFishNormal)
         LocalPlayer.Anchored = true
-	LocalPlayer.CFrame = CFrame.new(1115.8133544921875, 80.2374267578125, -3461.373291015625 + Random.new():NextInteger(-10, 50))
+        game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(1124.83521 + x, 75.4893112, -3454.31177 + z))
         wait(1)
         LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
         local platform = Instance.new("Part")
