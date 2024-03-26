@@ -264,10 +264,10 @@ function autoClaimMail()
 end
 -- Auto Fishing
 function moveToFishingDerec()
-    if getgenv().config.Fishing.Enabled 
+    local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+    if getgenv().config.Fishing.Enabled then
         if getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
             spawn(autoFishAdvanced)
-            local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
             LocalPlayer.Anchored = true
             LocalPlayer.CFrame = CFrame.new(1451.040771484375, 66.06719207763672, -4451.8642578125)
             wait(2)
