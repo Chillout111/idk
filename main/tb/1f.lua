@@ -13,6 +13,7 @@ local saveModule = require(RepStor.Library.Client.Save).Get()
 local Library = require(game.ReplicatedStorage:WaitForChild('Library'))
 local Level = require(game.ReplicatedStorage.Library.Client.MasteryCmds)
 local fish = require(game.ReplicatedStorage.Library.Directory.Mastery)
+local FishingRank = Level.GetLevel(fish.Fishing)
 local iHHLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Lib/TrungBLib.lua')))()
 local Window = iHHLib:MakeWindow({Name = "[iHH] 🐾 Fish 🐾", HidePremium = false, IntroEnabled = false, Saveconfig = true, configFolder = "iHHCheat"})
 
@@ -139,33 +140,7 @@ Mics:AddButton(
         end
     })
 iHHLib:Init()
--- Check if gems <= 20k then open a gift
-function checkGems()
-    local Network = game.ReplicatedStorage.Network
-    local Items = {"Gift Bag"}
-    local gem = 20000
-    function autoOpen(name)
-        Network.GiftBag_Open:InvokeServer(name)
-    end
-    local GetSave = function()
-        return require(game.ReplicatedStorage.Library.Client.Save).Get()
-    end
 
-    for i, v in pairs(GetSave().Inventory.Currency) do
-        if v.id == "Diamonds" then
-            if type(v._am) == "number" and type(gem) == "number" then
-                if v._am <= gem then
-                    while wait() do
-                        for i,gift in pairs(Items) do
-                            autoOpen(gift)
-                        end
-                        break
-                    end
-                end
-            end
-        end
-    end
-end
 -- Low CPU
 function lowCPU()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowCPU.lua"))()
@@ -223,10 +198,9 @@ function fastTeleFishArea()
         end
     end
 	wait(2)
-	spawn(AutoBuyRod)
     if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
         spawn(moveToFishingDerec)
-        spawn(ultrafpsboost)
+        --spawn(ultrafpsboost)
     elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
         spawn(moveToFishingDerec)
         spawn(lowCPU)
@@ -265,36 +239,32 @@ function autoClaimMail()
 end
 -- Auto Fishing
 function moveToFishingDerec()
-    local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-    if getgenv().config.Fishing.Enabled then
-        if getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
-            spawn(autoFishAdvanced)
-            LocalPlayer.Anchored = true
-            LocalPlayer.CFrame = CFrame.new(1451.040771484375, 66.06719207763672, -4451.8642578125)
-            wait(2)
-            LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
-    
-            local platform = Instance.new("Part")
-            platform.Parent = game:GetService("Workspace")
-            platform.Anchored = true
-            platform.CFrame = LocalPlayer.CFrame + Vector3.new(0, -5, 0)
-            platform.Size = Vector3.new(5, 1, 5)
-            platform.Transparency = 1
-    
-            LocalPlayer.Anchored = false
-        elseif getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
-            LocalPlayer.Anchored = true
-            LocalPlayer.CFrame = CFrame.new(1115.8133544921875, 80.2374267578125, -3461.373291015625 + Random.new():NextInteger(-10, 50))
-            wait(1)
-            LocalPlayer.Anchored = false
-            spawn(autoFishNormal)
-        end
+    if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
+        spawn(autoFishAdvanced)
+        
+        local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+        LocalPlayer.Anchored = true
+        LocalPlayer.CFrame = CFrame.new(1451.040771484375, 66.06719207763672, -4451.8642578125)
+        wait(2)
+        LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
+
+        local platform = Instance.new("Part")
+        platform.Parent = game:GetService("Workspace")
+        platform.Anchored = true
+        platform.CFrame = LocalPlayer.CFrame + Vector3.new(0, -5, 0)
+        platform.Size = Vector3.new(5, 1, 5)
+        platform.Transparency = 1
+
+        LocalPlayer.Anchored = false
+    elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
+        game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(1124.83521 + x, 75.4893112, -3454.31177 + z))
+        wait(3)
+        spawn(autoFishNormal)
     end
 end
 
 function autoFishAdvanced()
     local FishingRank = Level.GetLevel(fish.Fishing)
-
     while getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" do
         
         local deepPool
@@ -306,6 +276,7 @@ function autoFishAdvanced()
         end
         local castVector
         if  deepPool and FishingRank >= 30 then
+            print('[iHH] Fishing on DeepPool')
             castVector = Vector3.new(deepPool.Position.X + Random.new():NextNumber(-4.75, 4.75), deepPool.Position.Y, deepPool.Position.Z + Random.new():NextNumber(-4.75, 4.75))
         else
             castVector = Vector3.new(1465.877685546875 + Random.new():NextInteger(-20, 50), 61.62495040893555, -4455.58447265625 + Random.new():NextInteger(-20, 50))
@@ -335,34 +306,19 @@ function autoFishAdvanced()
     end
 end
 function autoFishNormal()
-
+    local castVector = Vector3.new(1465.877685546875 + Random.new():NextInteger(-20, 50), 61.62495040893555, -4455.58447265625 + Random.new():NextInteger(-20, 50))
     if not game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFirstChild("Fishing") then
         game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = game:GetService("Workspace").__THINGS.Instances.Fishing.Teleports.Enter.CFrame
         task.wait(1)
     end
 
     while task.wait() and getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" do
-        local x = math.random(1, 50)
-        local z = math.random(1, 20)
-
-        local argsCast = {
-            [1] = "Fishing",
-            [2] = "RequestCast",
-            [3] = Vector3.new(1149.94775390625, 75.91414642333984, -3460.374755859375) + Vector3.new(x, 0, z)
-        }
-
-        game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(unpack(argsCast))
+        Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestCast", castVector)
         task.wait(2.5)
-
-        local argsReel = {
-            [1] = "Fishing",
-            [2] = "RequestReel"
-        }
-        game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(unpack(argsReel))
+        Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestReel")
 
         repeat
             task.wait()
-
             local hasFishingLine = false
             for _, descendant in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
                 if descendant.Name == "FishingLine" then
@@ -370,18 +326,11 @@ function autoFishNormal()
                     break
                 end
             end
-            
-            game:GetService("ReplicatedStorage").Network.Instancing_FireCustomFromClient:FireServer(unpack(argsReel))
+            Network.Instancing_FireCustomFromClient:FireServer("AdvancedFishing", "RequestReel")
             if not hasFishingLine then
                 break
             end
-
-            local argsClicked = {
-                [1] = "Fishing",
-                [2] = "Clicked"
-            }
-
-            game:GetService("ReplicatedStorage").Network.Instancing_InvokeCustomFromClient:InvokeServer(unpack(argsClicked))
+            Network.Instancing_InvokeCustomFromClient:InvokeServer("AdvancedFishing", "Clicked")
         until not hasFishingLine
         task.wait()
     end
@@ -417,7 +366,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Gift Bag" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 500 then
+                if v._am >= 15 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
@@ -428,7 +377,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Large Gift Bag" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 250 then
+                if v._am >= 5 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
@@ -439,7 +388,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Mini Lucky Block" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 15 then
+                if v._am >= 5 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
@@ -450,7 +399,7 @@ function autoSendMail()
                 end
             end
             if v.id == "Mini Pinata" and getgenv().config.AutoMail.sendShit then
-                if v._am >= 10 then
+                if v._am >= 5 then
                     game:GetService("ReplicatedStorage").Network:FindFirstChild("Mailbox: Send"):InvokeServer(unpack({getgenv().config.AutoMail.userToMail, "", "Misc", i, v._am}))
                     iHHLib:MakeNotification({
                         Name = "[iHH] Mail Send!",
@@ -511,5 +460,5 @@ function atoggle()
     claimMail:Set(config.AutoMail.autoClaimMail)
 end
 spawn(atoggle)
-spawn(checkGems)
+spawn(AutoBuyRod)
 spawn(antiAFK)
