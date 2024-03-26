@@ -1,6 +1,6 @@
 local THINGS = game:GetService("Workspace")["__THINGS"]
 local playerGui = game:GetService("Players").LocalPlayer.PlayerGui
-if THINGS["__INSTANCE_CONTAINER"].Active:FindFirstChild('AdvancedFishing') then
+if game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFirstChild("AdvancedFishing") then
     pcall(function()
         for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing.Map:GetChildren()) do 
             v:Destroy()
@@ -132,7 +132,7 @@ if THINGS["__INSTANCE_CONTAINER"].Active:FindFirstChild('AdvancedFishing') then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowmap.lua"))()
     task.wait()
     game:GetService("RunService"):Set3dRenderingEnabled(false)
-elseif THINGS["__INSTANCE_CONTAINER"].Active:FindFirstChild('Fishing') then
+elseif game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFirstChild("Fishing") then
     pcall(function()
         for _, v in pairs(THINGS["__INSTANCE_CONTAINER"].Active.AdvancedFishing.Map:GetChildren()) do 
             v:Destroy()
