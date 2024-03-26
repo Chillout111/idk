@@ -239,13 +239,12 @@ function autoClaimMail()
 end
 -- Auto Fishing
 function moveToFishingDerec()
+    local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
     if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
         spawn(autoFishAdvanced)
-        
-        local LocalPlayer = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
         LocalPlayer.Anchored = true
         LocalPlayer.CFrame = CFrame.new(1451.040771484375, 66.06719207763672, -4451.8642578125)
-        wait(2)
+        wait(1)
         LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
 
         local platform = Instance.new("Part")
@@ -257,9 +256,19 @@ function moveToFishingDerec()
 
         LocalPlayer.Anchored = false
     elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
-        game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(1124.83521 + x, 75.4893112, -3454.31177 + z))
-        wait(3)
         spawn(autoFishNormal)
+        LocalPlayer.Anchored = true
+        game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(1124.83521 + x, 75.4893112, -3454.31177 + z))
+        wait(1)
+        LocalPlayer.CFrame = LocalPlayer.CFrame + Vector3.new(Random.new():NextInteger(-10, 10), -30, Random.new():NextInteger(-10, 10))
+        local platform = Instance.new("Part")
+        platform.Parent = game:GetService("Workspace")
+        platform.Anchored = true
+        platform.CFrame = LocalPlayer.CFrame + Vector3.new(0, -5, 0)
+        platform.Size = Vector3.new(5, 1, 5)
+        platform.Transparency = 1
+
+        LocalPlayer.Anchored = false
     end
 end
 
