@@ -281,7 +281,7 @@ function moveToFishingDerec()
 
         LocalPlayer.Anchored = false
     elseif getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "NormalFishing" then
-        game.Players.LocalPlayer.Character.Humanoid:MoveTo(Vector3.new(1124.83521 + Random.new():NextInteger(-10, 10), 75.4893112, -3454.31177 + Random.new():NextInteger(-10, 50)))
+        LocalPlayer.CFrame = CFrame.new(1124.83521, 75.4893112, -3454.31177 + Random.new():NextInteger(-10, 50)))
         wait(3)
         spawn(autoFishNormal)
     end
