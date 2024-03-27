@@ -127,13 +127,6 @@ local Mics = Window:MakeTab({Name = "Mics",Icon = "rbxassetid://7734053495",Prem
 Mics:AddSection({Name = "Setup your game with Low CPU and auto antiAFK"})
 Mics:AddButton(
     {
-        Name = "ReduceCPU",
-        Callback = function()
-			spawn(lowCPU)
-        end
-    })
-Mics:AddButton(
-    {
         Name = "Rejoin Server",
         Callback = function()
             game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
