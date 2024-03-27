@@ -231,5 +231,4 @@ elseif game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFir
     end
     
     loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowCPU.lua"))()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/ReduceLag/lowmap.lua"))()
 end
