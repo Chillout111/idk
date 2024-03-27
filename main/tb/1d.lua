@@ -269,11 +269,11 @@ function startDigging()
             task.wait(1)
 			
         end
-	
+	--[[
 	    if fpsboost == getgenv().config.Digsite.DigsiteFPSBoost then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/buff/dbf.lua"))()
 		fpsboost = false
-	    end	
+	    end	]]
         local block = findBlock()
         local chest = findChest()
         local magicBlockCFrame = findMagicBlock()
