@@ -17,13 +17,13 @@ pcall(function()
         end
     end
 end)
-
+--[[
 for _, v in pairs(playerGui:GetChildren()) do
     if v.Name ~= "_INSTANCES" then
         v.Enabled = false
     end
 end
-
+]]
 for _, v in pairs(activeMap.Map:GetDescendants()) do
     v:Destroy()
 end
