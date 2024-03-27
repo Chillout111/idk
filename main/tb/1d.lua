@@ -1,4 +1,4 @@
-loadstring(game:HttpGet('https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/antistaff.lua'))()
+iiloadstring(game:HttpGet('https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/antistaff.lua'))()
 
 -- Auto Craft
 function autoCraft()
@@ -273,7 +273,7 @@ function startDigging()
 	    if fpsboost == getgenv().config.Digsite.DigsiteFPSBoost then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/buff/dbf.lua"))()
 		fpsboost = false
-	    end	]]
+	    end]]
         local block = findBlock()
         local chest = findChest()
         local magicBlockCFrame = findMagicBlock()
