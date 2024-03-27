@@ -265,8 +265,9 @@ function startDigging()
             repeat
                 task.wait()
             until loaded
-            
+            if getgenv().config.Digsite.DigsiteFPSBoost then
 	        loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/buff/dbf.lua"))()
+	    end	
             detectLoad:Disconnect()
             task.wait(1)
         end
