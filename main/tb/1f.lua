@@ -171,7 +171,7 @@ function AutoBuyRod()
         desiredRod = "Amethyst Fishing Rod"
     end
 
-    while getgenv().config.Fishing.AutoBuyRod do task.wait(10)
+    while getgenv().config.Fishing.AutoBuyRod do task.wait(2)
         if areaRodNames and not checkForRod(desiredRod) then
             for rodName, price in pairs(areaRodNames) do
                 if not checkForRod(rodName) and Library.CurrencyCmds.Get("Fishing") > price[1] then
@@ -195,6 +195,7 @@ function fastTeleFishArea()
         end
     end
 	wait(2)
+	
     if getgenv().config.Fishing.Enabled and getgenv().config.Fishing.PlaceToFish == "AdvancedFishing" then
         spawn(moveToFishingDerec)
         spawn(ultrafpsboost)
@@ -202,6 +203,8 @@ function fastTeleFishArea()
         spawn(moveToFishingDerec)
         spawn(ultrafpsboost)
     end
+	
+	spawn(AutoBuyRod)
 end
 -- Auto Present
 function autoHiddenPresent()
@@ -484,5 +487,4 @@ function atoggle()
     claimMail:Set(config.AutoMail.autoClaimMail)
 end
 spawn(atoggle)
-spawn(AutoBuyRod)
 spawn(antiAFK)
