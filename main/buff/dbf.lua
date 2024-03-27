@@ -6,7 +6,7 @@ local playerGui = game:GetService("Players").LocalPlayer.PlayerGui
 -- BoostFPS
 pcall(function()
     for _, v in pairs(game:GetService("Workspace"):FindFirstChild("__THINGS"):GetChildren()) do
-        if table.find({"Ornaments", "Ski Chairs", "Sounds", "ShinyRelics", "Chest", "Breakables", "AnimatedBreakables"}, v.Name) then
+        if table.find({"Ornaments", "Ski Chairs", "Sounds", "Chest", "Breakables", "AnimatedBreakables"}, v.Name) then
             v:Destroy()
         end
     end
