@@ -242,7 +242,7 @@ end
 -- Staring digging
 function startDigging()
     local foundSparkles = false
-        
+    
     while task.wait(0.2) and getgenv().config.Digsite.Enabled do
         if not game:GetService("Workspace").__THINGS.__INSTANCE_CONTAINER.Active:FindFirstChild("AdvancedDigsite") then
             game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = game:GetService("Workspace").__THINGS.Instances.AdvancedDigsite.Teleports.Enter.CFrame
@@ -265,11 +265,12 @@ function startDigging()
             repeat
                 task.wait()
             until loaded
-            if getgenv().config.Digsite.DigsiteFPSBoost then
-	        loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/buff/dbf.lua"))()
-	    end	
             detectLoad:Disconnect()
             task.wait(1)
+	
+	    if getgenv().config.Digsite.DigsiteFPSBoost then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/buff/dbf.lua"))()
+	    end			
         end
 
         local block = findBlock()
