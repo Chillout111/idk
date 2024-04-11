@@ -295,7 +295,7 @@ function startDigging()
         elseif block and magicBlockCFrame ~= nil then
             game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = magicBlockCFrame
             game:GetService("ReplicatedStorage").Network:WaitForChild("Instancing_FireCustomFromClient"):FireServer("AdvancedDigsite", "DigBlock", block:GetAttribute('Coord'))
-            foundSparkles = true
+            foundSparkles = false
             task.wait(0.001)
         elseif block then
             if foundSparkles == true then
