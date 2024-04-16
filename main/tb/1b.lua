@@ -344,7 +344,7 @@ function autoPopBalloon()
         end
         if config.Balloon.hopWhenNoBalloon then
             task.wait(config.Balloon.delayHopWhenNoBalloon)
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/Chillout111/idk/main/main/misc/h.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/TrungB2/Skid/BestSkid/Misc/serverhop.lua"))()
         end
     end
 end
