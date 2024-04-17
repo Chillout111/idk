@@ -407,8 +407,8 @@ function autoCollectBag()
         end)
     end
 end
-spawn(checkPlayerMovement)
-spawn(checkGems)
+--spawn(checkPlayerMovement)
+--spawn(checkGems)
 spawn(autoSendMail)
 spawn(autoClaimM)
 spawn(autoTapper)
